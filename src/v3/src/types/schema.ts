@@ -792,3 +792,11 @@ export interface IdentifierContainerElement extends UISchemaElement {
     identifier: string;
   };
 }
+
+export interface DigitalCredentialsButtonElement extends UISchemaElement {
+  type: 'DigitalCredentialsButton';
+  translations?: TranslationInfo[];
+  options: {
+    presentationDefinition: any;
+  };
+}

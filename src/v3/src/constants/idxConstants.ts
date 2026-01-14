@@ -94,6 +94,7 @@ export const IDX_STEP: Record<string, string> = {
   TERMINAL: 'terminal',
   UNLOCK_ACCOUNT: 'unlock-account',
   USER_CODE: 'user-code',
+  VERIFIABLE_CREDENTIAL_CHALLENGE: 'verifiable-credential-challenge',
 };
 
 export const ID_PROOFING_TYPE: Record<string, string> = {
