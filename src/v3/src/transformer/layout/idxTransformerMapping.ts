@@ -48,6 +48,7 @@ import {
   transformSelectAuthenticatorVerify,
   transformSelectOVCustomAppMethodVerify,
 } from '../selectAuthenticator';
+import { transformVerifiableCredentialChallenge } from '../vdc';
 import { transformWebAuthNAuthenticator } from '../webauthn';
 import { transformYubikeyOtpAuthenticator } from '../yubikey';
 import { transformAdminConsent, transformEnduserConsent, transformGranularConsent } from './consent';
@@ -581,6 +582,15 @@ const TransformerMap: {
   [IDX_STEP.USER_CODE]: {
     [AUTHENTICATOR_KEY.DEFAULT]: {
       transform: transformDeviceCodeAuthenticator,
+    },
+  },
+  [IDX_STEP.VERIFIABLE_CREDENTIAL_CHALLENGE]: {
+    [AUTHENTICATOR_KEY.DEFAULT]: {
+      transform: transformVerifiableCredentialChallenge,
+      buttonConfig: {
+        showDefaultSubmit: false,
+        showDefaultCancel: false,
+      },
     },
   },
   // Because the CHALLENGE_WEBAUTHN_AUTOFILLUI_AUTHENTICATOR step

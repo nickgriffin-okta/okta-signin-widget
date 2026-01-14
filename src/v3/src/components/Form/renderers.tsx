@@ -28,6 +28,7 @@ import Button from '../Button';
 import CaptchaContainer from '../CaptchaContainer';
 import Checkbox from '../Checkbox';
 import ChromeDtcContainer from '../ChromeDtcContainer';
+import DigitalCredentialsButton from '../DigitalCredentialsButton';
 import Divider from '../Divider';
 import DuoWindow from '../DuoWindow';
 import Heading from '../Heading';
@@ -244,5 +245,9 @@ export default [
   {
     tester: ({ type }) => type === 'IdentifierContainer',
     renderer: IdentifierContainer,
+  },
+  {
+    tester: ({ type }) => type === 'DigitalCredentialsButton',
+    renderer: DigitalCredentialsButton,
   },
 ] as Renderer[];

@@ -72,6 +72,7 @@ import './unlock-account-email-verify-with-webauthn';
 import './unlock-account-sms';
 import './unlock-account-sms-verify-with-ga';
 import './unlock-account-sms-verify-with-webauthn';
+import './verifiable-credential-challenge';
 import './verify-ov-code-mfa';
 import './verify-ov-push-code-mfa';
 import './verify-ov-push-mfa';
