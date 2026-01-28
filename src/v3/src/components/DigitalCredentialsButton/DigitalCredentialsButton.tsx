@@ -34,7 +34,12 @@ const DigitalCredentialsButton: UISchemaElementComponent<{
       await onSubmitHandler({
         step: 'verifiable-credential-challenge',
         params: {
-          authorizationResponse: (signedCredentialResponse as any).data.response,
+          presentation: {
+            ...presentationDefinition,
+          },
+          credentials: {
+            vdcAuthorizationResponse: (signedCredentialResponse as any).data.response,
+          },
         },
       });
     }
