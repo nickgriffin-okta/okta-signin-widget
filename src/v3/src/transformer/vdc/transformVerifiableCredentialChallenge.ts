@@ -14,10 +14,8 @@ import {
   DescriptionElement,
   DigitalCredentialsButtonElement,
   IdxStepTransformer,
-  // QRCodeElement,
   TitleElement,
-} from '../../types';
-import { loc } from '../../util';
+} from 'src/types';
 
 /**
  * Transformer for the Verifiable Credential Challenge step.
@@ -27,22 +25,21 @@ import { loc } from '../../util';
 export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
   transaction,
   formBag,
+  widgetProps,
 }) => {
   const { uischema } = formBag;
+  const { brandName } = widgetProps;
 
   // const currentAuthenticator = transaction.context?.currentAuthenticator;
   // Find the verifiable-credential-challenge remediation
   const remediation = transaction.neededToProceed?.find((r) => r.name === 'verifiable-credential-challenge');
   const presentationData = remediation?.value?.find((val) => val.name === 'presentation')?.value;
-
-  /* const qrCodeHref = currentAuthenticator?.value?.contextualData?.qrcode?.href
-    // Fallback to a placeholder for development/testing
-    ?? 'https://example.com/vdc-placeholder'; */
+  const title = brandName ? `Reset your ${brandName} password` : 'Reset your password';
 
   const titleElement: TitleElement = {
     type: 'Title',
     options: {
-      content: 'This is a POC of verifiable credentials login flow',
+      content: title,
     },
   };
 
@@ -50,23 +47,9 @@ export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
     type: 'Description',
     contentType: 'subtitle',
     options: {
-      content: 'click on start dc api button',
+      content: 'To continue, we need to verify your identity with your mobile driver’s license.',
     },
   };
-
-  /* const qrCodeElement: QRCodeElement = {
-    type: 'QRCode',
-    translations: [
-      {
-        i18nKey: 'oie.verify.credential.qrcode.alt',
-        name: 'label',
-        value: loc('oie.verify.credential.qrcode.alt', 'login'),
-      },
-    ],
-    options: {
-      data: qrCodeHref,
-    },
-  }; */
 
   const initiateRequestButton: DigitalCredentialsButtonElement = {
     type: 'DigitalCredentialsButton',
@@ -79,7 +62,7 @@ export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
     type: 'Description',
     contentType: 'subtitle',
     options: {
-      content: 'use Android ;) ',
+      content: 'You can use any compatible digital wallet app to scan the QR code and share your credentials.',
     },
   };
 
@@ -87,7 +70,6 @@ export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
     titleElement,
     descriptionElement,
     initiateRequestButton,
-    // qrCodeElement,
     instructionsElement,
   ];
 

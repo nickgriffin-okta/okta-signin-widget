@@ -47,11 +47,11 @@ const DigitalCredentialsButton: UISchemaElementComponent<{
 
   return (
     <OdyButton
-      variant="secondary"
+      variant="primary"
       isFullWidth
       onClick={handleClick}
       buttonRef={focusRef}
-      label="Start dc api"
+      label="Continue"
     />
   );
 };
