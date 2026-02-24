@@ -648,7 +648,7 @@ const TransformerMap: {
       transform: transformVerifiableCredentialChallenge,
       buttonConfig: {
         showDefaultSubmit: false,
-        showDefaultCancel: false,
+        showDefaultCancel: true,
       },
     },
   },
