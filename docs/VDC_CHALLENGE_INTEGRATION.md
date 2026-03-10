@@ -419,12 +419,19 @@ scenario('verifiable-credential-challenge', (rest) => {
 
 To test the VDC challenge flow manually:
 
+*Note: Only SIW v3 is supported for VDC integrations.
+
 1. **Start development server with mock scenario:**
    ```bash
-   npm start -- --scenario verifiable-credential-challenge
+   cd ./src/v3/src
+   yarn install
+   yarn dev
    ```
 
-2. **Navigate to the widget** in your browser
+2. **Navigate to the widget** in your browser and specify the mocked scenario:
+   ```
+   http://localhost:3000/?siw-use-mocks=true&siw-mock-scenario=verifiable-credential-challenge
+   ```
 
 3. **Trigger password recovery:**
    - Enter a username (any value works with mocks)
