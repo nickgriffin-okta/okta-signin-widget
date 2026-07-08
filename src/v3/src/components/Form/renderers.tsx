@@ -29,6 +29,7 @@ import CaptchaContainer from '../CaptchaContainer';
 import Checkbox from '../Checkbox';
 import ChromeDtcContainer from '../ChromeDtcContainer';
 import DigitalCredentialsButton from '../DigitalCredentialsButton';
+import VdcIframePresentation from '../VdcIframePresentation';
 import Divider from '../Divider';
 import DuoWindow from '../DuoWindow';
 import Heading from '../Heading';
@@ -249,5 +250,9 @@ export default [
   {
     tester: ({ type }) => type === 'DigitalCredentialsButton',
     renderer: DigitalCredentialsButton,
+  },
+  {
+    tester: ({ type }) => type === 'VdcIframePresentation',
+    renderer: VdcIframePresentation,
   },
 ] as Renderer[];

@@ -763,3 +763,12 @@ export interface DigitalCredentialsButtonElement extends UISchemaElement {
     presentationDefinition: any;
   };
 }
+
+export interface VdcIframePresentationElement extends UISchemaElement {
+  type: 'VdcIframePresentation';
+  options: {
+    iframeSrc: string;
+    presentationDefinition: any;
+    step: string;
+  };
+}

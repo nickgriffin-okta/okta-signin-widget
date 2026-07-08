@@ -15,6 +15,7 @@ import {
   DigitalCredentialsButtonElement,
   IdxStepTransformer,
   TitleElement,
+  VdcIframePresentationElement,
 } from 'src/types';
 
 /**
@@ -51,13 +52,6 @@ export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
     },
   };
 
-  const initiateRequestButton: DigitalCredentialsButtonElement = {
-    type: 'DigitalCredentialsButton',
-    options: {
-      presentationDefinition: presentationData,
-    },
-  };
-
   const instructionsElement: DescriptionElement = {
     type: 'Description',
     contentType: 'subtitle',
@@ -66,12 +60,40 @@ export const transformVerifiableCredentialChallenge: IdxStepTransformer = ({
     },
   };
 
-  uischema.elements = [
-    titleElement,
-    descriptionElement,
-    initiateRequestButton,
-    instructionsElement,
-  ];
+  // If iframeSrc is present, use the iframe path (Apple Wallet domain verification workaround)
+  const iframeSrc = presentationData?.iframeSrc;
+
+  if (iframeSrc) {
+    const iframeElement: VdcIframePresentationElement = {
+      type: 'VdcIframePresentation',
+      options: {
+        iframeSrc,
+        presentationDefinition: presentationData,
+        step: 'verifiable-credential-challenge',
+      },
+    };
+
+    uischema.elements = [
+      titleElement,
+      descriptionElement,
+      iframeElement,
+    ];
+  } else {
+    // Direct DC API path (existing behavior — no iframe needed)
+    const initiateRequestButton: DigitalCredentialsButtonElement = {
+      type: 'DigitalCredentialsButton',
+      options: {
+        presentationDefinition: presentationData,
+      },
+    };
+
+    uischema.elements = [
+      titleElement,
+      descriptionElement,
+      initiateRequestButton,
+      instructionsElement,
+    ];
+  }
 
   return formBag;
 };
