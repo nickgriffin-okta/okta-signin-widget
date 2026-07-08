@@ -41,9 +41,11 @@ const headers = (() => {
     // Allow google domains for testing recaptcha
     const scriptSrc = `script-src http://${HOST}:${DEV_SERVER_PORT} 'nonce-playground' https://www.google.com https://www.gstatic.com`;
     const styleSrc = `style-src http://${HOST}:${DEV_SERVER_PORT} 'nonce-playground'`;
+    // Allow embedding the VDC wallet-iframe from okta-core local (HTTPS)
+    const frameSrc = 'frame-src https://natan-vdc.vdc.okta1.com';
 
     return {
-      'Content-Security-Policy': `${scriptSrc}; ${styleSrc};`,
+      'Content-Security-Policy': `${scriptSrc}; ${styleSrc}; ${frameSrc};`,
     };
   }
   return undefined;
