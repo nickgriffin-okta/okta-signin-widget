@@ -13,6 +13,7 @@
 import { useEffect, useRef } from 'preact/hooks';
 
 import Logger from '../../../../util/Logger';
+import { useWidgetContext } from '../../contexts';
 import { useOnSubmit } from '../../hooks';
 import {
   UISchemaElementComponent,
@@ -41,6 +42,14 @@ const VdcIframePresentation: UISchemaElementComponent<{
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const onSubmitHandler = useOnSubmit();
+  const { languageCode } = useWidgetContext();
+
+  // The iframe is served from a separate domain (*.vdc.<root>) with its own session/cookies,
+  // so it has no way to look up the user's locale itself — SIW already knows it, so pass it
+  // along explicitly. This also lets the iframe be tested in isolation via ?lang=<code>.
+  const iframeUrl = new URL(iframeSrc);
+  iframeUrl.searchParams.set('lang', languageCode);
+  const iframeSrcWithLocale = iframeUrl.toString();
 
   useEffect(() => {
     const iframeOrigin = new URL(iframeSrc).origin;
@@ -96,7 +105,7 @@ const VdcIframePresentation: UISchemaElementComponent<{
   return (
     <iframe
       ref={iframeRef}
-      src={iframeSrc}
+      src={iframeSrcWithLocale}
       allow="digital-credentials-get; identity-credentials-get; publickey-credentials-get"
       title="Digital Credential Presentation"
       width="100%"
