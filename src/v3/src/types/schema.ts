@@ -793,14 +793,6 @@ export interface IdentifierContainerElement extends UISchemaElement {
   };
 }
 
-export interface DigitalCredentialsButtonElement extends UISchemaElement {
-  type: 'DigitalCredentialsButton';
-  translations?: TranslationInfo[];
-  options: {
-    presentationDefinition: any;
-  };
-}
-
 export interface VdcIframePresentationElement extends UISchemaElement {
   type: 'VdcIframePresentation';
   options: {

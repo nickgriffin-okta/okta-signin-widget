@@ -28,8 +28,6 @@ import Button from '../Button';
 import CaptchaContainer from '../CaptchaContainer';
 import Checkbox from '../Checkbox';
 import ChromeDtcContainer from '../ChromeDtcContainer';
-import DigitalCredentialsButton from '../DigitalCredentialsButton';
-import VdcIframePresentation from '../VdcIframePresentation';
 import Divider from '../Divider';
 import DuoWindow from '../DuoWindow';
 import Heading from '../Heading';
@@ -66,6 +64,7 @@ import StepperNavigator from '../StepperNavigator';
 import StepperRadio from '../StepperRadio';
 import TextWithActionLink from '../TextWithActionLink';
 import Title from '../Title';
+import VdcIframePresentation from '../VdcIframePresentation';
 import WebAuthNAutofill from '../WebAuthNAutofill';
 import WebAuthNSubmitButton from '../WebAuthNSubmitButton';
 
@@ -256,10 +255,6 @@ export default [
   {
     tester: ({ type }) => type === 'IdentifierContainer',
     renderer: IdentifierContainer,
-  },
-  {
-    tester: ({ type }) => type === 'DigitalCredentialsButton',
-    renderer: DigitalCredentialsButton,
   },
   {
     tester: ({ type }) => type === 'VdcIframePresentation',
